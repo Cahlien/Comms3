@@ -2,14 +2,15 @@ package dev.crowell.comms.views;
 
 import com.gluonhq.charm.glisten.mvc.View;
 import java.io.IOException;
+import java.util.Objects;
+
 import javafx.fxml.FXMLLoader;
 
 public class LoginScreenView {
 
     public View getView() {
         try {
-            View view = FXMLLoader.load(LoginScreenView.class.getResource("loginscreen.fxml"));
-            return view;
+            return FXMLLoader.load(Objects.requireNonNull(LoginScreenView.class.getResource("loginscreen.fxml")));
         } catch (IOException e) {
             System.out.println("IOException: " + e);
             return new View();

@@ -9,6 +9,8 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
+import java.util.Objects;
+
 import static com.gluonhq.charm.glisten.application.AppManager.HOME_VIEW;
 
 public class CommsApplication extends Application {
@@ -27,18 +29,18 @@ public class CommsApplication extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
         appManager.start(primaryStage);
     }
 
     private void postInit(Scene scene) {
         Swatch.BLUE.assignTo(scene);
 
-        scene.getStylesheets().add(CommsApplication.class.getResource("style.css").toExternalForm());
-        ((Stage) scene.getWindow()).getIcons().add(new Image(CommsApplication.class.getResourceAsStream("/icon.png")));
+        scene.getStylesheets().add(Objects.requireNonNull(CommsApplication.class.getResource("style.css")).toExternalForm());
+        ((Stage) scene.getWindow()).getIcons().add(new Image(Objects.requireNonNull(CommsApplication.class.getResourceAsStream("/icon.png"))));
     }
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         launch(args);
     }
 }

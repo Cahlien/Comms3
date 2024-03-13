@@ -12,6 +12,8 @@ import com.gluonhq.charm.glisten.control.NavigationDrawer.ViewItem;
 import com.gluonhq.charm.glisten.visual.MaterialDesignIcon;
 import javafx.scene.image.Image;
 
+import java.util.Objects;
+
 import static dev.crowell.comms.CommsApplication.LOGINSCREEN_VIEW;
 import static dev.crowell.comms.CommsApplication.HOMESCREEN_VIEW;
 
@@ -22,7 +24,7 @@ public class DrawerManager {
         
         NavigationDrawer.Header header = new NavigationDrawer.Header("Gluon Application",
                 "Multi View Project",
-                new Avatar(21, new Image(DrawerManager.class.getResourceAsStream("/icon.png"))));
+                new Avatar(21, new Image(Objects.requireNonNull(DrawerManager.class.getResourceAsStream("/icon.png")))));
         drawer.setHeader(header);
         
         final Item loginscreenItem = new ViewItem("LoginScreen", MaterialDesignIcon.HOME.graphic(), LOGINSCREEN_VIEW, ViewStackPolicy.SKIP);
@@ -33,6 +35,11 @@ public class DrawerManager {
             final Item quitItem = new Item("Quit", MaterialDesignIcon.EXIT_TO_APP.graphic());
             quitItem.selectedProperty().addListener((obs, ov, nv) -> {
                 if (nv) {
+                    if(Services.get(LifecycleService.class).isPresent()) {
+                        app.setTitle("Service present");
+                    } else {
+                        System.exit(0);
+                    }
                     Services.get(LifecycleService.class).ifPresent(LifecycleService::shutdown);
                 }
             });
