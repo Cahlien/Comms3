@@ -1,3 +1,11 @@
 .root {
 
 }
+
+.app-bar {
+    -fx-background-color: #181818FF;
+}
+
+.app-bar > .title-box > .label {
+   -fx-text-fill: #B4B4B4FF;
+}

@@ -5,8 +5,10 @@ import dev.crowell.comms.views.HomeScreenView;
 import com.gluonhq.charm.glisten.application.AppManager;
 import com.gluonhq.charm.glisten.visual.Swatch;
 import javafx.application.Application;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.util.Objects;
@@ -30,6 +32,8 @@ public class CommsApplication extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+        primaryStage.setMaximized(true);
+
         appManager.start(primaryStage);
     }
 

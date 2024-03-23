@@ -6,6 +6,11 @@ import com.gluonhq.charm.glisten.mvc.View;
 import com.gluonhq.charm.glisten.visual.MaterialDesignIcon;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Background;
+import javafx.scene.paint.Color;
+
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class LoginScreenPresenter {
 
@@ -19,11 +24,9 @@ public class LoginScreenPresenter {
         loginscreen.showingProperty().addListener((obs, oldValue, newValue) -> {
             if (newValue) {
                 AppBar appBar = AppManager.getInstance().getAppBar();
-                appBar.setNavIcon(MaterialDesignIcon.MENU.button(e -> 
-                        AppManager.getInstance().getDrawer().open()));
-                appBar.setTitleText("LoginScreen");
-                appBar.getActionItems().add(MaterialDesignIcon.SEARCH.button(e -> 
-                        System.out.println("Search")));
+
+                ResourceBundle bundle = ResourceBundle.getBundle("dev.crowell.comms.i18n.MessagesBundle", Locale.getDefault());
+                appBar.setTitleText(bundle.getString("appBar.title"));
             }
         });
     }
